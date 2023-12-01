@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Page</title>
+  <!-- Add Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    /* Custom CSS for search results */
+    .result {
+      border: 1px solid #ccc;
+      background-color: #f7f7f7;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Chat With Your Data</h1>
+    <form id="searchForm">
+      <div class="form-group">
+        <label for="question">Your question:</label>
+        <textarea class="form-control" id="question" name="question" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="numResults">Number of results:</label>
+        <input type="number" class="form-control" id="numResults" name="numResults" min="1" max="10">
+      </div>
+
+      <button type="button" class="btn btn-primary" id="searchButton">Search</button>
+
+      <div id="searchResults" class="mt-4">
+        <!-- Sample search results will be displayed here -->
+      </div>
+    </form>
+  </div>
+
+  <!-- Add Bootstrap JS and jQuery links (required for Bootstrap functionality) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    document.getElementById("searchButton").addEventListener("click", function () {
+      const question = document.getElementById("question").value;
+      const numResults = document.getElementById("numResults").value;
+      const resultsContainer = document.getElementById("searchResults");
+
+      // Sample search results
+      const sampleResults = [
+        "nd language. And machine learning is one of \n" +
+        "those things that has and is having \n" +
+        "a large impact on ",
+        "learning this stuff and learning algorithms \n" +
+        "and having a large impact on many segments \n" +
+        "of science ",
+        "of which is supervised learning. So le\nt me give you an example of that.",
+        "maybe computers learning to do things that \n" +
+        "they were not programmed explicitly to do."
+      ];
+
+      // Display sample results
+      resultsContainer.innerHTML = "";
+      for (let i = 0; i < Math.min(numResults, sampleResults.length); i++) {
+        const result = document.createElement("div");
+        result.classList.add("result");
+        result.innerHTML = "<strong>Result " + (i + 1) + ":</strong><br>" + sampleResults[i];
+        resultsContainer.appendChild(result);
+      }
+    });
+  </script>
+</body>
+</html>
